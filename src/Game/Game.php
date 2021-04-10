@@ -28,6 +28,7 @@ class Game
     private int $computerMoney;
     private ?int $currentBet;
     private ?string $message;
+    private array $graphic;
 
 
 
@@ -199,6 +200,11 @@ class Game
         $this->computerMoney = 100;
     }
 
+    public function getLastGraphicRoll(): array
+    {
+        return $this->diceHand->getGraphicalRoll();
+    }
+
     public function renderGame(): void
     {
         $data = [
@@ -213,7 +219,8 @@ class Game
             "computerMoney" => $this->computerMoney ?? null,
             "currentBet" => $this->currentBet ?? null,
             "message" => $this->message ?? null,
-            "title" => "21"
+            "title" => "21",
+            "graphic" => $this->getLastGraphicRoll() ?? null
         ];
 
         $this->message = null;

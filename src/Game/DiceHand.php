@@ -21,11 +21,12 @@ class DiceHand
     private array $dices;
     private ?int $sum = null;
     private string $output = "";
+    private array $graphical;
 
-    public function __construct(int $dices, int $dicsfaces)
+    public function __construct(int $dices, int $diceFaces)
     {
         for ($i = 0; $i < $dices; $i++) {
-            $this->dices[$i] = new Dice($dicsfaces);
+            $this->dices[$i] = new GraphicalDice($diceFaces);
         }
     }
 
@@ -55,5 +56,16 @@ class DiceHand
     public function getDiceSum(): int
     {
         return $this->sum;
+    }
+
+    public function getGraphicalRoll(): array
+    {
+        $len = count($this->dices);
+        $this->graphical = [];
+
+        for ($i = 0; $i < $len; $i++) {
+            array_push($this->graphical, $this->dices[$i]->grapicalLastRoll());
+        }
+        return $this->graphical;
     }
 }

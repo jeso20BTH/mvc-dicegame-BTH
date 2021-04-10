@@ -1,1 +1,3 @@
+C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\Game.php:31	Avoid unused private fields such as '$graphic'.
+C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\GraphicalDice.php:21	Avoid unused private fields such as '$faces'.
 C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Router\Router.php:23	The method dispatch() has a Cyclomatic Complexity of 17. The configured cyclomatic complexity threshold is 10.

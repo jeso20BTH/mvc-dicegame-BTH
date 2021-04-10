@@ -19,6 +19,7 @@ $playerMoney = $playerMoney ?? 0;
 $computerMoney = $computerMoney ?? 0;
 $currentBet = $currentBet ?? null;
 $message = $message ?? null;
+$graphic = $graphic ?? null;
 
 ?><h1><?= $header ?></h1>
 
@@ -55,7 +56,20 @@ $message = $message ?? null;
 <?php elseif ($type == "play" || $type == null) : ?>
     <h2>Players turn</h2>
     <p>Player: <?= $playerSum ?></p>
-    <p>lastRoll: <?= $lastRoll ?></p>
+    <div class="flex row center">
+        <?php foreach ($graphic as $dice) : ?>
+            <div class="flex column dice <?= (count($dice) == 1) ? "center" : "between"?>">
+                <?php foreach ($dice as $row) : ?>
+                    <div class="flex row <?= $row["spacing"] ?> no-spacing-h">
+                        <?php for ($j = 0; $j < $row["amount"]; $j++) : ?>
+                            <div class="dot"></div>
+                        <?php endfor; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
+
+    </div>
     <form class="" method="post">
         <div class="flex row center">
             <input class="button" type="submit" name="action" value="Roll">
