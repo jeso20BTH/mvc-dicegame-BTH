@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mos\Router;
 
-use Jeso20\Game\Game;
+use Jeso20\Game\TwentyOne;
 
 use function Mos\Functions\{
     destroySession,

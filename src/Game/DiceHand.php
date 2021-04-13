@@ -41,6 +41,22 @@ class DiceHand
         }
     }
 
+    public function rollSpecific(array $dicesToRoll): void
+    {
+        $len = count($this->dices);
+
+        $this->sum = 0;
+
+        for ($i = 0; $i < $len; $i++) {
+            if (in_array($i, $dicesToRoll)) {
+                $this->sum += $this->dices[$i]->roll();
+            } else {
+                $this->sum += $this->dices[$i]->getLastRoll();
+            }
+
+        }
+    }
+
     public function getLastRoll(): string
     {
         $this->output = "";
@@ -51,6 +67,18 @@ class DiceHand
         }
 
         return substr(strval($this->output), 0, -2);
+    }
+
+    public function getLastRollArray(): array
+    {
+        $roll = [];
+        $len = count($this->dices);
+
+        for ($i = 0; $i < $len; $i++) {
+            $roll[] = $this->dices[$i]->getLastRoll();
+        }
+
+        return $roll;
     }
 
     public function getDiceSum(): int

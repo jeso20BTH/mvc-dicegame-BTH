@@ -26,7 +26,10 @@ use function Mos\Functions\url;
                 <a class="round-top-right" href="<?= url("/") ?>">Home</a>
             </div>
             <div class="flex column end">
-                <a class="no-border" href="<?= url("/game") ?>">Game 21</a>
+                <a href="<?= url("/twenty-one") ?>">Game 21</a>
+            </div>
+            <div class="flex column end">
+                <a class="no-border" href="<?= url("/yatzy") ?>">Yatzy</a>
             </div>
         </div>
     </nav>

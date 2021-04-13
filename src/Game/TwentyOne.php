@@ -14,9 +14,9 @@ use function Mos\Functions\{
 };
 
 /**
- * Class Dice.
+ * Class TO.
  */
-class Game
+class TwentyOne
 {
     private int $playerSum;
     private int $computerSum;
@@ -167,8 +167,9 @@ class Game
         return $this->standings;
     }
 
-    public function postController(string $action)
+    public function postController(): array
     {
+        $action = $_POST["action"];
         if ($action == "Start game") {
             $dices = $_POST["dices"] ?? "1";
             $dices = intval($dices);
@@ -185,7 +186,7 @@ class Game
             $this->type = "menu";
         }
 
-        $this->renderGame();
+        return $this->renderGame();
     }
 
     public function clearData(): void
@@ -205,7 +206,7 @@ class Game
         return $this->diceHand->getGraphicalRoll();
     }
 
-    public function renderGame(): void
+    public function renderGame(): array
     {
         $data = [
             "header" => "Lets play 21!",
@@ -225,7 +226,6 @@ class Game
 
         $this->message = null;
 
-        $body = renderView("layout/game.php", $data);
-        sendResponse($body);
+        return $data;
     }
 }
