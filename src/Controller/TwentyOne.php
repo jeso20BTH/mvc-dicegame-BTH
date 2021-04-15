@@ -6,10 +6,9 @@ namespace Jeso20\Controller;
 
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseInterface;
+use Jeso20\Game\TwentyOneGame;
 
 use function Mos\Functions\renderView;
-
-
 
 /**
  * Controller for the index route.
@@ -20,7 +19,7 @@ class TwentyOne
     {
         $psr17Factory = new Psr17Factory();
 
-        $callable = $_SESSION["TwentyOne"] ?? new \Jeso20\Game\TwentyOne();
+        $callable = $_SESSION["TwentyOne"] ?? new TwentyOneGame();
         $_SESSION["TwentyOne"] = $callable;
 
         $data = $callable->renderGame();
@@ -36,7 +35,7 @@ class TwentyOne
     {
         $psr17Factory = new Psr17Factory();
 
-        $callable = $_SESSION["TwentyOne"] ?? new \Jeso20\Game\TwentyOne();
+        $callable = $_SESSION["TwentyOne"] ?? new TwentyOneGame();
         $_SESSION["TwentyOne"] = $callable;
 
         $data = $callable->postController();

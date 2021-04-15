@@ -44,16 +44,14 @@ class DiceHand
     public function rollSpecific(array $dicesToRoll): void
     {
         $len = count($this->dices);
-
         $this->sum = 0;
 
         for ($i = 0; $i < $len; $i++) {
             if (in_array($i, $dicesToRoll)) {
                 $this->sum += $this->dices[$i]->roll();
-            } else {
+            } elseif (in_array($i, $dicesToRoll) == false) {
                 $this->sum += $this->dices[$i]->getLastRoll();
             }
-
         }
     }
 

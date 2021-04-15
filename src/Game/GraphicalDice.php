@@ -18,8 +18,6 @@ use function Mos\Functions\{
  */
 class GraphicalDice extends Dice
 {
-    private int $faces = 6;
-
     public function grapicalLastRoll(): array
     {
         switch ($this->getLastRoll()) {

@@ -16,7 +16,7 @@ use function Mos\Functions\{
 /**
  * Class TO.
  */
-class TwentyOne
+class TwentyOneGame
 {
     private int $playerSum;
     private int $computerSum;
@@ -28,7 +28,6 @@ class TwentyOne
     private int $computerMoney;
     private ?int $currentBet;
     private ?string $message;
-    private array $graphic;
 
 
 

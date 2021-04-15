@@ -7,14 +7,13 @@ namespace Jeso20\Controller;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
+use Jeso20\Game\YatzyGame;
 
 use function Mos\Functions\{
     destroySession,
     renderView,
     url
 };
-
-
 
 /**
  * Controller for the index route.
@@ -25,7 +24,7 @@ class Yatzy
     {
         $psr17Factory = new Psr17Factory();
 
-        $callable = $_SESSION["Yatzy"] ?? new \Jeso20\Game\Yatzy();
+        $callable = $_SESSION["Yatzy"] ?? new YatzyGame();
         $_SESSION["Yatzy"] = $callable;
 
         $data = $callable->renderGame();
@@ -39,12 +38,10 @@ class Yatzy
 
     public function post(): ResponseInterface
     {
-        $psr17Factory = new Psr17Factory();
-
-        $callable = $_SESSION["Yatzy"] ?? new \Jeso20\Game\Yatzy();
+        $callable = $_SESSION["Yatzy"] ?? new YatzyGame();
         $_SESSION["Yatzy"] = $callable;
 
-        $data = $callable->postController();
+        $callable->postController();
 
         return (new Response())
             ->withStatus(301)

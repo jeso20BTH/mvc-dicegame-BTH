@@ -16,19 +16,11 @@ use function Mos\Functions\{
 /**
  * Class TO.
  */
-class Yatzy
+class YatzyGame
 {
-    private int $playerSum;
-    private int $computerSum;
     private object $pointChecker;
-    private array $standings;
     private string $type;
-    private string $roller;
-    private int $playerMoney;
-    private int $computerMoney;
-    private ?int $currentBet;
     private ?string $message;
-    private array $graphic;
     private ?int $turnCounter = 0;
     private ?int $rollCounter = 0;
     private array $players = [];
@@ -60,12 +52,16 @@ class Yatzy
     public function __construct()
     {
         $this->type = "menu";
-        $this->pointChecker = New YatzyPointChecker();
+        $this->pointChecker = new YatzyPointChecker();
     }
 
     public function addPlayer(string $type, string $name): void
     {
-        $this->players[] = new Player($name, $type);
+        if ($type == "Player") {
+            $this->players[] = new Player($name, $type);
+        } elseif ($type == "Computer") {
+            $this->players[] = new Computer($name, $type);
+        }
     }
 
     public function startTurn(): void
@@ -85,12 +81,24 @@ class Yatzy
         }
 
         $this->players[$this->playerCounter]->rollSpecific();
-
         // Ha i slutet av metoden, efter ökande av tur.
         if ($this->rollCounter == self::ROLLS) {
             // Method for end of turn
             $this->endOfRoll();
+            return;
         }
+        if ($this->players[$this->playerCounter]->getType() == "Computer") {
+            $this->computerBetweenRolls();
+        }
+    }
+
+    private function computerBetweenRolls(): void
+    {
+        $dices = $this->players[$this->playerCounter]->keepLogic();
+        $dices = $this->players[$this->playerCounter]->dicesToRoll();
+        $this->players[$this->playerCounter]->setDicesToRoll($dices);
+
+        $this->roll();
     }
 
     public function setDicesToRoll(array $dices = [0, 1, 2, 3, 4]): void
@@ -109,15 +117,24 @@ class Yatzy
         return $this->players;
     }
 
-    public function endOfRoll(): void
+    private function endOfRoll(): void
     {
         $this->setDicesToRoll([]);
 
         $this->type = "place";
+
+        if ($this->players[$this->playerCounter]->getType() == "Computer") {
+            $placement = $this->players[$this->playerCounter]->placeLogic();
+
+            $placement = $placement["placement"];
+
+            $this->endTurn($placement);
+        }
     }
 
-    public function scoreHandler(string $placement): void
+    private function scoreHandler(string $placement): void
     {
+
         $lastRoll = $this->players[$this->playerCounter]->getLastRoll();
         $sum = 0;
 
@@ -145,13 +162,9 @@ class Yatzy
                 $pairOne = $this->pointChecker->match($lastRoll, 6, 2);
                 $pairTwo = $this->pointChecker->match($lastRoll, $pairOne - 1, 2);
 
-                echo $pairOne;
-                echo "\n";
-                echo $pairTwo;
-
                 $sum = $pairOne * 2 + $pairTwo * 2;
 
-                if ($pairOne != 0 || $pairTwo != 0) {
+                if ($pairOne == 0 || $pairTwo == 0) {
                     $sum = 0;
                 }
                 break;
@@ -195,7 +208,6 @@ class Yatzy
 
         $this->players[$this->playerCounter]->setScore($placement, $sum);
         $this->setSums();
-
     }
 
     public function setSums(): void
@@ -226,91 +238,33 @@ class Yatzy
         $this->players[$this->playerCounter]->setSum("total_score", $totalScore);
     }
 
-    private function endTurn(string $placement): void
+    public function endTurn(string $placement): void
     {
         $this->scoreHandler($placement);
 
-        if ($this->playerCounter == count($this->players) - 1
-        && $this->turnCounter == count(self::COMBINATIONS["upper"]) + count(self::COMBINATIONS["lower"]) - 1 ) {
+        $this->playerCounter++;
+
+        if ($this->playerCounter >= count($this->players) - 1) {
+            $this->turnCounter ++;
+        }
+
+        if ($this->playerCounter >= count($this->players) - 1) {
+            $this->playerCounter = 0;
+        }
+
+        if ($this->turnCounter >= count(self::COMBINATIONS["upper"]) + count(self::COMBINATIONS["lower"])) {
             $this->type = "summary";
+            // echo "<pre>";
+            // var_dump($this->players);
+            // echo "<pre>";
             return;
         }
 
-        $this->playerCounter++;
 
-        if ($this->playerCounter > count($this->players) - 1) {
-            $this->playerCounter = 0;
 
-            $this->turnCounter ++;
-        }
         $this->startTurn();
-
-
     }
-    //
-    // private function endGame(string $winner): void
-    // {
-    //     $this->type = "end";
-    //     if ($winner == "player") {
-    //         $this->standings["player"] += 1;
-    //         $this->playerMoney += $this->currentBet;
-    //         $this->computerMoney -= $this->currentBet;
-    //
-    //         if ($this->message == null) {
-    //             $this->message = "Congratulation you won!!!";
-    //         }
-    //         return;
-    //     } elseif ($winner == "computer") {
-    //         $this->standings["computer"] += 1;
-    //         $this->playerMoney -= $this->currentBet;
-    //         $this->computerMoney += $this->currentBet;
-    //
-    //         if ($this->message == null) {
-    //             $this->message = "Computer won!";
-    //         }
-    //     }
-    //
-    //     $_SESSION["standings"] = $this->standings;
-    //     $this->currentBet = null;
-    // }
-    //
 
-    //
-    // public function start(int $dices): void
-    // {
-    //     $this->diceHand = new DiceHand($dices, 6);
-    //
-    //     $this->standings = $_SESSION["standings"] ?? array(
-    //         "player" => 0,
-    //         "computer" => 0
-    //     );
-    //
-    //     $this->type = "play";
-    //     $this->playerSum = 0;
-    //     $this->computerSum = 0;
-    //
-    //     $this->roller = "player";
-    //     $this->roll($this->roller);
-    // }
-    //
-    // public function getSum(string $type): int
-    // {
-    //     if ($type == "player") {
-    //         return $this->playerSum;
-    //     }
-    //     return $this->computerSum;
-    // }
-    //
-    // public function getLastRoll(): string
-    // {
-    //     return $this->diceHand->getLastRoll();
-    // }
-    //
-    // public function getStandings(): array
-    // {
-    //     return $this->standings;
-    // }
-    //
     public function postController(): array
     {
         $action = $_POST["action"];
@@ -321,7 +275,7 @@ class Yatzy
 
             // $this->start($dices);
         } elseif ($action == "Keep") {
-            $dices = $_POST["dices"];
+            $dices = $_POST["dices"] ?? [];
             $dicesToRoll = $this->players[$this->playerCounter]->getDicesToRoll($dices);
             $this->setDicesToRoll($dicesToRoll);
             $this->roll();
@@ -332,6 +286,9 @@ class Yatzy
             $this->addPlayer($_POST["type"], $_POST["name"]);
         } elseif ($action == "Menu") {
             $this->type = "menu";
+            $this->players = [];
+            $this->turnCounter = 0;
+            $this->playerCounter = 0;
         } elseif ($action == "Place") {
             $this->endTurn($_POST["placement"]);
         }
@@ -361,12 +318,12 @@ class Yatzy
 
     public function presentPlayers(): array
     {
-        $p = [];
+        $pla = [];
 
         foreach ($this->players as $player) {
-            $p[] = $player->presentPlayer();
+            $pla[] = $player->presentPlayer();
         }
-        return $p;
+        return $pla;
     }
     //
     public function renderGame(): array

@@ -18,10 +18,11 @@ use function Mos\Functions\{
  */
 class Player
 {
-    private ?string $type;
-    private object $diceHand;
-    private array $dicesToRoll = [];
-    private array $combinations = [];
+    protected ?string $type;
+    protected ?string $name;
+    protected ?object $diceHand;
+    protected array $dicesToRoll = [];
+    protected array $combinations = [];
 
     public function __construct(string $name, string $type)
     {
@@ -38,8 +39,7 @@ class Player
     public function getDicesToRoll(array $dicesToSave): array
     {
         $rollDices = [];
-        for ($i=0; $i < 5 ; $i++) {
-
+        for ($i = 0; $i < 5; $i++) {
             if (in_array(strval($i), $dicesToSave) == false) {
                 $rollDices[] = $i;
             }
@@ -91,5 +91,10 @@ class Player
             "name" => $this->name,
             "combinations" => $this->combinations
         ];
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 }

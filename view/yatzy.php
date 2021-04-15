@@ -26,7 +26,6 @@ $graphic = $graphic ?? null;
 ?><h1><?= $header ?></h1>
 
 <?php if ($type == "menu" || $type == null || $type == "add") : ?>
-
     <?php require __DIR__ . "/yatzy-menu.php"; ?>
 
 <?php elseif ($type == "roll" || $type == null) : ?>

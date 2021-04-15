@@ -4,17 +4,21 @@ declare(strict_types=1);
 
 require  __DIR__ . "/../../vendor/autoload.php";
 
-use Jeso20\Game\Yatzy;
 
 session_name(preg_replace("/[^a-z\d]/i", "", __DIR__));
 session_start();
 
-$test = new Yatzy();
-//
-$dices = [3, 3, 3, 2, 2];
-$test->addPlayer("player", "Jesper");
 
-$test->scoreHandler("Two Pairs", $dices);
+// $dices = [3, 3, 3, 2, 2];
+// $test->addPlayer("Player", "Jesper");
+// $test->addPlayer("Computer", "Satan");
+//
+// $test->startTurn();
+// $test->roll();
+// $test->roll();
+// $test->endTurn("Chance");
+// var_dump($test->presentPlayers());
+// $test->scoreHandler("Two Pairs", $dices);
 
 
 
@@ -48,4 +52,4 @@ $test->scoreHandler("Two Pairs", $dices);
 // echo $game->getSum("player");
 // $game->roll("computer");
 // echo $game->getSum("computer");
-// var_dump($game->getStandings());
+// var_dump($game->getStandings()); -->

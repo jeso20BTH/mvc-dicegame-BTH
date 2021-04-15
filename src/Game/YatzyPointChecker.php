@@ -28,12 +28,9 @@ class YatzyPointChecker
 
     public function match(array $dices, int $start, int $minimumMatch): int
     {
-        for ($i=$start; $i > 0 ; $i--) {
-
+        for ($i = $start; $i > 0; $i--) {
             if (in_array($i, $dices)) {
-
                 if (array_count_values($dices)[$i] >= $minimumMatch) {
-
                     return  $i;
                 }
             }
@@ -44,7 +41,8 @@ class YatzyPointChecker
     public function straight(array $dices, int $start): int
     {
         $sum = 0;
-        for ($i=$start; $i > $start - count($dices) ; $i--) {
+        $len = count($dices);
+        for ($i = $start; $i > $start - $len; $i--) {
             if ($this->upper($dices, $i) == 0) {
                 return  0;
             }
