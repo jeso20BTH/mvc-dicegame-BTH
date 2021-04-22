@@ -1,8 +1,0 @@
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\Computer.php:19	The class Computer has an overall complexity of 68 which is very high. The configured complexity threshold is 50.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\Computer.php:87	The method keepLogic() has a Cyclomatic Complexity of 21. The configured cyclomatic complexity threshold is 10.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\Computer.php:87	The method keepLogic() has an NPath complexity of 8652. The configured NPath complexity threshold is 200.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\Computer.php:194	The method place() has a Cyclomatic Complexity of 30. The configured cyclomatic complexity threshold is 10.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\Computer.php:284	The method placeLogic() has a Cyclomatic Complexity of 10. The configured cyclomatic complexity threshold is 10.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\ComputerLogic.php:21	The method straight() has a Cyclomatic Complexity of 16. The configured cyclomatic complexity threshold is 10.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\YatzyGame.php:19	The class YatzyGame has an overall complexity of 58 which is very high. The configured complexity threshold is 50.
-C:\cygwin64\home\jeppe\dbwebb-kurser\mvc\me\game\src\Game\YatzyGame.php:135	The method scoreHandler() has a Cyclomatic Complexity of 22. The configured cyclomatic complexity threshold is 10.

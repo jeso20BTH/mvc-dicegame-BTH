@@ -10,7 +10,7 @@ $header = $header ?? null;
 $message = $message ?? null;
 $playerMoney = $playerMoney ?? null;
 $computerMoney = $computerMoney ?? null;
-$currentBet = $currentBet ?? null
+$currentBet = $currentBet ?? null;
 
 ?><h1><?= $header ?></h1>
 

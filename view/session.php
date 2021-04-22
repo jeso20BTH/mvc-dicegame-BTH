@@ -8,6 +8,12 @@ declare(strict_types=1);
 
 use function Mos\Functions\url;
 
+$header = $header ?? null;
+$message = $message ?? null;
+$playerMoney = $playerMoney ?? null;
+$computerMoney = $computerMoney ?? null;
+$currentBet = $currentBet ?? null;
+
 $url = url("/session/destroy");
 
 echo <<<EOD

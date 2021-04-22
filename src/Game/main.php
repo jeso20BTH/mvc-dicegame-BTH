@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types=1);
-
-require  __DIR__ . "/../../vendor/autoload.php";
-
-
-session_name(preg_replace("/[^a-z\d]/i", "", __DIR__));
-session_start();
+// declare(strict_types=1);
+//
+// require  __DIR__ . "/../../vendor/autoload.php";
+//
+//
+// session_name(preg_replace("/[^a-z\d]/i", "", __DIR__));
+// session_start(); -->
 
 
 // $dices = [3, 3, 3, 2, 2];

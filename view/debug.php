@@ -12,6 +12,12 @@ use function Mos\Functions\{
     getRoutePath
 };
 
+$header = $header ?? null;
+$message = $message ?? null;
+$playerMoney = $playerMoney ?? null;
+$computerMoney = $computerMoney ?? null;
+$currentBet = $currentBet ?? null;
+
 echo "<h1>Debug details</h1>";
 
 var_dump(getBaseUrl());
