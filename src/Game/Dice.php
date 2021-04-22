@@ -37,4 +37,9 @@ class Dice
     {
         return $this->roll;
     }
+
+    public function setLastRoll(int $roll): void
+    {
+        $this->roll = $roll;
+    }
 }
