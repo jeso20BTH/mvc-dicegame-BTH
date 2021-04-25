@@ -24,7 +24,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testSetSum(){
+    public function testSetSum()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
 
@@ -44,7 +45,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testEndRoll(){
+    public function testEndRoll()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
 
@@ -94,7 +96,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testStartGame(){
+    public function testStartGame()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
 
@@ -110,7 +113,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollPlayerBusted(){
+    public function testRollPlayerBusted()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
 
@@ -131,7 +135,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollPlayer21(){
+    public function testRollPlayer21()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
 
@@ -153,7 +158,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollComputerBusted(){
+    public function testRollComputerBusted()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -175,7 +181,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollComputer21(){
+    public function testRollComputer21()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -197,7 +204,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollPlayerHigher(){
+    public function testRollPlayerHigher()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -228,7 +236,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollComputerHigher(){
+    public function testRollComputerHigher()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -259,7 +268,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testRollComputerRollAgain(){
+    public function testRollComputerRollAgain()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -279,14 +289,13 @@ class GameTwentyOneGameTest extends TestCase
         $sum = $controller->getSum("computer");
         $exp = 21;
         $this->assertEquals($exp, $sum);
-
-
     }
 
     /**
      * Try to create the dicehand class.
      */
-    public function testPostControllerStart(){
+    public function testPostControllerStart()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -310,7 +319,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testPostControllerClear(){
+    public function testPostControllerClear()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -340,7 +350,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testPostControllerStop(){
+    public function testPostControllerStop()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();
@@ -364,7 +375,8 @@ class GameTwentyOneGameTest extends TestCase
     /**
      * Try to create the dicehand class.
      */
-    public function testPostControllerMenu(){
+    public function testPostControllerMenu()
+    {
         $controller = new TwentyOneGame();
         $this->assertInstanceOf("\Jeso20\Game\TwentyOneGame", $controller);
         $controller->clearData();

@@ -1,4 +1,7 @@
 {
+    "name" : "game/phpproject",
+    "description": "Course material for mvc.",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Mos\\": "src/",

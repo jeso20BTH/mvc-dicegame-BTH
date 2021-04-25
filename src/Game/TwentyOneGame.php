@@ -6,10 +6,8 @@ namespace Jeso20\Game;
 
 use function Mos\Functions\{
     destroySession,
-    redirectTo,
     renderView,
     renderTwigView,
-    sendResponse,
     url
 };
 
@@ -18,16 +16,16 @@ use function Mos\Functions\{
  */
 class TwentyOneGame
 {
-    private int $playerSum;
-    private int $computerSum;
+    private int $playerSum = 0;
+    private int $computerSum = 0;
     private object $diceHand;
     private array $standings;
     private string $type;
     private string $roller;
-    private int $playerMoney;
-    private int $computerMoney;
-    private ?int $currentBet;
-    private ?string $message;
+    private int $playerMoney = 10;
+    private int $computerMoney = 100;
+    private ?int $currentBet = 0;
+    private ?string $message = null;
 
 
 
@@ -44,7 +42,7 @@ class TwentyOneGame
         $this->type = "menu";
     }
 
-    private function endRoll(string $type): string
+    public function endRoll(string $type): string
     {
         if ($type == "player") {
             if ($this->playerSum > 21) {
@@ -75,7 +73,6 @@ class TwentyOneGame
             $this->standings["player"] += 1;
             $this->playerMoney += $this->currentBet;
             $this->computerMoney -= $this->currentBet;
-
             if ($this->message == null) {
                 $this->message = "Congratulation you won!!!";
             }
@@ -131,9 +128,13 @@ class TwentyOneGame
         return;
     }
 
-    public function start(int $dices): void
+    public function start(int $dices, DiceHand $diceHand = null): void
     {
         $this->diceHand = new DiceHand($dices, 6);
+
+        if ($diceHand) {
+            $this->diceHand = $diceHand;
+        }
 
         $this->standings = $_SESSION["standings"] ?? array(
             "player" => 0,
@@ -146,6 +147,11 @@ class TwentyOneGame
 
         $this->roller = "player";
         $this->roll($this->roller);
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     public function getSum(string $type): int
@@ -226,5 +232,19 @@ class TwentyOneGame
         $this->message = null;
 
         return $data;
+    }
+
+    public function setSum(string $type, int $sum): void
+    {
+        if ($type == "player") {
+            $this->playerSum = $sum;
+            return;
+        }
+        $this->computerSum = $sum;
+    }
+
+    public function setDiceHand(DiceHand $diceHand): void
+    {
+        $this->diceHand = $diceHand;
     }
 }

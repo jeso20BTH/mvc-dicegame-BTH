@@ -6,10 +6,8 @@ namespace Jeso20\Game;
 
 use function Mos\Functions\{
     destroySession,
-    redirectTo,
     renderView,
     renderTwigView,
-    sendResponse,
     url
 };
 
@@ -25,6 +23,7 @@ class DiceHand
 
     public function __construct(int $dices, int $diceFaces)
     {
+        $this->dices = [];
         for ($i = 0; $i < $dices; $i++) {
             $this->dices[$i] = new GraphicalDice($diceFaces);
         }
@@ -73,13 +72,15 @@ class DiceHand
         $len = count($this->dices);
 
         for ($i = 0; $i < $len; $i++) {
-            $roll[] = $this->dices[$i]->getLastRoll();
+            if ($this->dices[$i]->getLastRoll()) {
+                $roll[] = $this->dices[$i]->getLastRoll();
+            }
         }
 
         return $roll;
     }
 
-    public function getDiceSum(): int
+    public function getDiceSum(): ?int
     {
         return $this->sum;
     }
@@ -90,8 +91,15 @@ class DiceHand
         $this->graphical = [];
 
         for ($i = 0; $i < $len; $i++) {
-            array_push($this->graphical, $this->dices[$i]->grapicalLastRoll());
+            if ($this->dices[$i]->grapicalLastRoll() !== []) {
+                array_push($this->graphical, $this->dices[$i]->grapicalLastRoll());
+            }
         }
         return $this->graphical;
+    }
+
+    public function addDice(Dice $dice): void
+    {
+        $this->dices[] = $dice;
     }
 }

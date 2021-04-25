@@ -6,10 +6,8 @@ namespace Jeso20\Game;
 
 use function Mos\Functions\{
     destroySession,
-    redirectTo,
     renderView,
     renderTwigView,
-    sendResponse,
     url
 };
 

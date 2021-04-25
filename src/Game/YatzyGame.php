@@ -6,10 +6,8 @@ namespace Jeso20\Game;
 
 use function Mos\Functions\{
     destroySession,
-    redirectTo,
     renderView,
     renderTwigView,
-    sendResponse,
     url
 };
 
@@ -55,8 +53,12 @@ class YatzyGame
         $this->pointChecker = new YatzyPointChecker();
     }
 
-    public function addPlayer(string $type, string $name): void
+    public function addPlayer(string $type, string $name, ?object $test = null): void
     {
+        if ($test) {
+            $this->players[] = $test;
+            return;
+        }
         if ($type == "Player") {
             $this->players[] = new Player($name, $type);
         } elseif ($type == "Computer") {
@@ -106,9 +108,11 @@ class YatzyGame
         $this->players[$this->playerCounter]->setDicesToRoll($dices);
     }
 
-    public function nextPlayer(array $dices = [0, 1, 2, 3, 4]): void
+    public function nextPlayer(array $dices = [0, 1, 2, 3, 4]): array
     {
         $this->players[$this->playerCounter]->setDicesToRoll($dices);
+
+        return $dices;
     }
 
 
@@ -132,10 +136,9 @@ class YatzyGame
         }
     }
 
-    private function scoreHandler(string $placement): void
+    public function scoreHandler(string $placement, ?array $dices = null): void
     {
-
-        $lastRoll = $this->players[$this->playerCounter]->getLastRoll();
+        $lastRoll = $dices ?? $this->players[$this->playerCounter]->getLastRoll();
         $sum = 0;
 
         $upper = [
@@ -248,7 +251,7 @@ class YatzyGame
             $this->turnCounter ++;
         }
 
-        if ($this->playerCounter >= count($this->players) - 1) {
+        if ($this->playerCounter >= count($this->players)) {
             $this->playerCounter = 0;
         }
 

@@ -6,10 +6,8 @@ namespace Jeso20\Game;
 
 use function Mos\Functions\{
     destroySession,
-    redirectTo,
     renderView,
     renderTwigView,
-    sendResponse,
     url
 };
 
@@ -115,7 +113,7 @@ class Computer extends Player
                 foreach ($rolls as $number) {
                     $dicesToRoll = $this->logic->oneNumber($arraySummary, $this->getLastRoll(), $number);
 
-                    if (count($dicesToRoll) > 0) {
+                    if (count($dicesToRoll) > 3) {
                         return $dicesToRoll;
                     }
                 }

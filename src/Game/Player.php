@@ -6,10 +6,8 @@ namespace Jeso20\Game;
 
 use function Mos\Functions\{
     destroySession,
-    redirectTo,
     renderView,
     renderTwigView,
-    sendResponse,
     url
 };
 
@@ -96,5 +94,10 @@ class Player
     public function getType(): string
     {
         return $this->type;
+    }
+
+    public function setDiceHand(DiceHand $diceHand): void
+    {
+        $this->diceHand = $diceHand;
     }
 }

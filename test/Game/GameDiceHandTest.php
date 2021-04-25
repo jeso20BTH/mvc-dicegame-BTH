@@ -154,7 +154,7 @@ class GameDiceHandTest extends TestCase
         $controller = new DiceHand($dices, 6);
         $this->assertInstanceOf("\Jeso20\Game\DiceHand", $controller);
 
-        for ($i=1; $i <= 6; $i++) {
+        for ($i = 1; $i <= 6; $i++) {
             $dice = $this->createStub(GraphicalDice::class);
 
                 $dice->method('roll')
