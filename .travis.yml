@@ -2,18 +2,11 @@ language: php
 
 php:
     - 7.4
-    - hhvm
-    - nightly
 
 sudo: false
 
 git:
     submodules: false
-
-matrix:
-    allow_failures:
-        - hhmv
-        - nightly
 
 before_script:
     - make install
