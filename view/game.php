@@ -21,6 +21,7 @@ $currentBet = $currentBet ?? null;
 $message = $message ?? null;
 $graphic = $graphic ?? null;
 
+
 ?><h1><?= $header ?></h1>
 
 <?php if ($type == "menu" || $type == null) : ?>
