@@ -1,3 +1,4 @@
+![Travis](https://travis-ci.org/jeso20BTH/mvc-dicegame-BTH.svg?branch=main)
 # Dice games
 ## Introduction
 This is an dice-game webpage with two games.
