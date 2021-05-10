@@ -1,4 +1,7 @@
 ![Travis](https://travis-ci.org/jeso20BTH/mvc-dicegame-BTH.svg?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/jeso20BTH/mvc-dicegame-BTH/badges/build.png?b=main)](https://scrutinizer-ci.com/g/jeso20BTH/mvc-dicegame-BTH/build-status/main)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeso20BTH/mvc-dicegame-BTH/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/jeso20BTH/mvc-dicegame-BTH/?branch=main)
+[![Code Coverage](https://scrutinizer-ci.com/g/jeso20BTH/mvc-dicegame-BTH/badges/coverage.png?b=main)](https://scrutinizer-ci.com/g/jeso20BTH/mvc-dicegame-BTH/?branch=main)
 # Dice games
 ## Introduction
 This is an dice-game webpage with two games.
